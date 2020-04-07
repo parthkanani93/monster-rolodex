@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
+import Cardlist from './component/card-list/card-list.component'
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      my : '',
       monster: []
        
  
@@ -14,6 +14,7 @@ class App extends Component {
 }
 
   componentDidMount(){
+
     fetch('https://jsonplaceholder.typicode.com/users').then(Response => Response.json()).then(users => this.setState({
       monster : users
     }))
@@ -22,9 +23,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.monster.map((monster) =>
-          <h1 key={monster.id}>{monster.name}</h1>
-        )}
+      <h1>Monster Rolodex</h1>
+      <Cardlist monster={this.state.monster} /> 
+     
+       
+       
         
       </div>
     );
